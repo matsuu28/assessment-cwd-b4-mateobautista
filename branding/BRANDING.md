@@ -52,7 +52,7 @@ Upload the PNGs as they are. Facebook recompresses JPGs harder.
 
 ## First post (pin it)
 
-> **What if, at midnight tonight, nobody could die?** ☠️❌
+> **What if humans stopped dying tonight?** ☠️🌍
 >
 > No illness, no accidents, no old age. Just… forever. Here's how the world changes, from Day 0 to Year 161. 🌍
 >

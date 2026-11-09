@@ -51,7 +51,7 @@ How it differs from option 1 (Hypothetica): Hypothetica is calm and editorial (s
 
 ## Episode 1 post
 
-> **Earth B, Episode 1: What if no one could ever die?** ☠️❌
+> **Earth B, Episode 1: What if humans stopped dying tonight?** ☠️🌍
 >
 > Same planet. One thing changed: at midnight, death stops. 🌍
 > Hospitals overflow. Cemeteries close. Food prices triple. By Year 160, we're leaving Earth.
