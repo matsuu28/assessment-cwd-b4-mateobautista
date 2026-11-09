@@ -47,7 +47,17 @@
 <div class="note">Layout preview only — not an exact replica of any app.</div>
 <script>
   if (location.search.includes('mobile')) document.body.classList.add('m');
-  const imgs = ['hypothetica-cover.png', 'hypothetica-profile.png'].map((s) => new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = s; }));
+  const B = new URLSearchParams(location.search).get('brand');
+  const files = B === 'earthb' ? ['earth-b/earth-b-cover.png', 'earth-b/earth-b-profile.png'] : ['hypothetica-cover.png', 'hypothetica-profile.png'];
+  document.querySelector('.cover').style.backgroundImage = `url(${files[0]})`;
+  document.querySelector('.pfp').style.backgroundImage = `url(${files[1]})`;
+  if (B === 'earthb') {
+    document.querySelector('.who h1').textContent = 'Earth B';
+    document.querySelector('.who p').textContent = 'Digital creator · 3D What If stories';
+    document.querySelector('.bio').innerHTML = 'Same planet. One thing changed. 🌍<br>Weekly 3D What If stories, with real numbers.';
+    document.querySelector('.btn.p').style.background = '#ff6a4d';
+  }
+  const imgs = files.map((s) => new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = s; }));
   Promise.all([document.fonts.ready, ...imgs]).then(() => { window.__done = true; });
 </script>
 </body>

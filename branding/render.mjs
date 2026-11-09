@@ -9,6 +9,7 @@ const require = createRequire(import.meta.url);
 let pw; try { pw = require('playwright'); } catch { pw = require('/opt/node22/lib/node_modules/playwright'); }
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
+if (process.argv.includes('--earthb-only')) process.env.EB_ONLY = '1';
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.woff2': 'font/woff2', '.png': 'image/png' };
 const server = http.createServer((req, res) => {
   const p = path.join(ROOT, decodeURIComponent(new URL(req.url, 'http://x').pathname));
@@ -29,9 +30,17 @@ async function grab(url, w, h, out, scale = 1) {
   await page.close();
   console.log('wrote', out);
 }
+if (!process.env.EB_ONLY) {
 await grab('/branding/brand.html?kind=profile', 1080, 1080, 'hypothetica-profile.png');
 await grab('/branding/brand.html?kind=cover', 1640, 924, 'hypothetica-cover.png');
 await grab('/branding/brand.html?kind=cover&guides', 1640, 924, 'cover-safe-areas.png');
 await grab('/branding/preview.html?view=desktop', 1280, 760, 'preview-desktop.png');
 await grab('/branding/preview.html?view=mobile', 390, 844, 'preview-mobile.png', 2);
+}
+fs.mkdirSync(path.join(HERE, 'earth-b'), { recursive: true });
+await grab('/branding/brand.html?brand=earthb&kind=profile', 1080, 1080, 'earth-b/earth-b-profile.png');
+await grab('/branding/brand.html?brand=earthb&kind=cover', 1640, 924, 'earth-b/earth-b-cover.png');
+await grab('/branding/brand.html?brand=earthb&kind=cover&guides', 1640, 924, 'earth-b/cover-safe-areas.png');
+await grab('/branding/preview.html?view=desktop&brand=earthb', 1280, 760, 'earth-b/preview-desktop.png');
+await grab('/branding/preview.html?view=mobile&brand=earthb', 390, 844, 'earth-b/preview-mobile.png', 2);
 await browser.close(); server.close();
